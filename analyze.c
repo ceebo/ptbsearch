@@ -555,6 +555,7 @@ int i,damaged, lastsfor;
    copyLifeList(pattern, &tmp);
 
    damaged = 0;
+   lastsfor = 0;
    for (i=0; i<steps; i++) { 
         generate(&tmp);
         if ( matchLifeList(&tmp, perturb, transl) == perturb->ncells && 
