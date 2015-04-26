@@ -1,0 +1,11 @@
+# Intended to find 2b2o4b2o$bo2bo3b2o$2b2o7$7b2o$2bo4b2o$b3o$2o2bo!
+# Requires maxdamage = 30 - 13 = 17
+./ptb2 bhep.col simkin.list 31 2 7 1
+
+# Intended to find 9b2o$9b2o2$2obo7bo$ob2o6b3o$9b2obo!
+# Requires maxdamage = 32 - 1 = 31
+./ptb2 bhep.col conduit1.list 33 1 0 1
+
+# Intended to find 2o3b2o$2o3b2o8$8b2o$2bo5b2o$b3o$bo!
+# Requires maxdamage = 35 - 24 = 11
+./ptb2 rpent.col r_to_h.list 36 2 18 1
