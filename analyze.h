@@ -51,8 +51,7 @@ void setupPerturbors(LifeList *perturbs, Cell *placed, int nplaced,
 
 int placeNewPerturbor(LifeList *seed, LifeList *perturbs,
                        Cell *placed, int nplaced, int newperturb,
-                       int initialGen, int finalGen, Cell *aligns,
-                       int maxdamage);
+                       int initialGen, int finalGen, Cell *aligns);
 
 
 

@@ -155,6 +155,8 @@ int combineListsMin(Cell *list1, int n1, Cell *list2, int n2, Cell *list3);
 
 int countMatch(Cell *list1, int n1, Cell *list2, int n2);
 
+int broken(Cell *list1, int n1, Cell *list2, int n2);
+
 int sumColumnNeighbors(Cell *list, int n, Cell *newlist);
 
 void extractCenterCells(Cell *list, int n, Cell *extractFrom);
@@ -319,8 +321,7 @@ void getpat(char *s, LifeList *cells);
 
 int placeNewPerturbor(LifeList *seed, LifeList *perturbs,
                        Cell *placed, int nplaced, int newperturb,
-                       int initialGen, int finalGen, Cell *aligns,
-                       int maxdamage);
+                       int initialGen, int finalGen, Cell *aligns);
 
 int readPatList(LifeList *pat, char *patname);
 

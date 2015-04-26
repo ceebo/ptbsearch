@@ -6,6 +6,8 @@ int subtractLists(Cell *list1, int n1, Cell *list2, int n2);
 
 int countMatch(Cell *list1, int n1, Cell *list2, int n2);
 
+int broken(Cell *list1, int n1, Cell *list2, int n2);
+
 int sumColumnNeighbors(Cell *list, int n, Cell *newlist);
 
 int sumAllNeighbors(Cell *list, int n, Cell *newlist);

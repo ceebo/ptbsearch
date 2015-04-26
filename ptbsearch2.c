@@ -52,7 +52,7 @@ int iperturb, thisgen;
 
      naligns=placeNewPerturbor(reaction+depth, perturbs, 
                                perturbPlace, depth, iperturb,
-                               mingen, maxgen, aligns, 5);
+                               mingen, maxgen, aligns);
 
      setupPerturbors(perturbs, perturbPlace, depth, 
                      &justPerturbs, reaction+depth);

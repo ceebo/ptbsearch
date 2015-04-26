@@ -594,11 +594,9 @@ void setupPerturbors(LifeList *perturbs, Cell *placed, int nplaced,
 
 int placeNewPerturbor(LifeList *seed, LifeList *perturbs,
                        Cell *placed, int nplaced, int newperturb,
-                       int initialGen, int finalGen, Cell *aligns,
-                       int maxdamage) {
+                       int initialGen, int finalGen, Cell *aligns) {
   int i, j;
   int  nconv, nold, naligns, nelim;
-  int damage;
 
   copyLifeList(perturbs+newperturb, &thisperturb);
 
@@ -615,7 +613,6 @@ int placeNewPerturbor(LifeList *seed, LifeList *perturbs,
   setupPerturbors(perturbs, placed, nplaced, &perturbcells, &cells);
 
   naligns=0;
-  damage=0;
   for (i=0; i<finalGen; i++) {
 
     nconv=convolve(spread2.cellList, spread2.ncells,
@@ -650,15 +647,9 @@ int placeNewPerturbor(LifeList *seed, LifeList *perturbs,
 
     generate(&cells);
 
-    if (countMatch(cells.cellList, cells.ncells,
-                   perturbcells.cellList, perturbcells.ncells) 
-                         < perturbcells.ncells) {
-               damage++;
-               if (damage>maxdamage) break;
-    } else {
-      damage=0;
-    }
- 
+    if (broken(cells.cellList, cells.ncells,
+               perturbcells.cellList, perturbcells.ncells))
+      break;
   }
 
   naligns=removeLessThan(aligns, naligns, initialGen);

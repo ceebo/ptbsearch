@@ -115,6 +115,37 @@ int countMatch(Cell *list1, int n1, Cell *list2, int n2) {
   }
 
 
+int broken(Cell *list1, int n1, Cell *list2, int n2) {
+
+    int i,j,matches;
+
+    i=0; j=0;
+
+    list1[n1].position= INT_MAX;
+    list2[n2].position= INT_MAX;
+
+    while (i<n1 && j<n2) {
+
+       if (list1[i].position == list2[j].position) {
+         i++;
+         j++;
+       } else if (list1[i].position < list2[j].position) {
+         i++;
+       } else {
+         if (list2[j].value == 1) {
+           // We found a place where list2 has value 1 (i.e. '*')
+           // and list1 is blank. Therefore broken.
+           return 1;
+         }
+         j++;
+       }
+
+     }
+
+    return 0;
+  }
+
+
 
 
 int sumColumnNeighbors(Cell *list, int n, Cell *newlist) {
