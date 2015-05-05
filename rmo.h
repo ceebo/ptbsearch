@@ -1,3 +1,5 @@
+#include "gen.h"
+
 int combineLists(Cell *list1, int n1, Cell *list2, int n2, Cell *list3);
 
 int intersectLists(Cell *list1, int n1, Cell *list2, int n2, Cell *list3);
@@ -41,8 +43,9 @@ int condCopyList(Cell *fromList, int n, Cell *toList, int value);
 int getQuadrantCells(Cell *fromList, int n, Cell *toList, int origin,
                                            int dx, int dy);
 
-int convolve(Cell *list1, int n1, Cell *list2, int n2, 
-             Cell *convolution, Cell *scratch1, Cell *scratch2);
+int convolve(Cell *list1, int n1, Cell *list2, int n2,
+             Cell **convolution, Cell **scratch1, Cell **scratch2,
+             void (*morespace) (int));
 
 int convolveMin(Cell *list1, int n1, Cell *list2, int n2, 
                 Cell *convolution, Cell *scratch1, Cell *scratch2);

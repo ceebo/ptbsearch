@@ -1,3 +1,5 @@
+#include "gen.h"
+
 void resizeIfNeeded(LifeList *cells, int n);
 
 int nextGen(Cell *counts, int ncounts, Cell *cellList);

@@ -1,3 +1,5 @@
+#include "gen.h"
+
 void initLifeList(LifeList *cells);
 
 void copyLifeList(LifeList *cells1, LifeList *cells2);
@@ -16,4 +18,4 @@ int interact(LifeList *pat1, LifeList *pat2, int transl);
 
 void getpat(char *s, LifeList *cells);
 
-void outPostScript(LifeList *cells);
+void outPostScript(LifeList *cells, float cellsize, int spacing);

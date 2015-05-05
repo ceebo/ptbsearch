@@ -1,10 +1,12 @@
+#include "gen.h"
+
 OscillatorDesc oscillation(LifeList *cells, LifeList *working, int testUpTo);
 
 int simpleSS(LifeList *cells, LifeList *working);
 
 void makeWorkSpace(int n);
 
-initMatchList(PartialOscillatorDesc *osc, int nmatches);
+void initMatchList(PartialOscillatorDesc *osc, int nmatches);
 
 void bestMatches(LifeList *cells1, LifeList *cells2, int period, 
                      int nmatches, PartialOscillatorDesc *osc);
@@ -13,6 +15,7 @@ void partialOscillation(LifeList *cells, LifeList *working,
                         int testUpTo, int testPhases,
                         int nmatches, PartialOscillatorDesc *posc);
 
+	
 /* not a public procedure */
 int findTouching(LifeList *cells1, LifeList *cells2);
 
@@ -43,8 +46,7 @@ void getGeneration(LifeList *cells, History hist, int gen);
 
 int mostSurvives(LifeList *pattern, LifeList *perturb, int transl, int steps);
 
-int survives(LifeList *pattern, LifeList *perturb, int transl, int steps,
-             int zero_ok);
+int survives(LifeList *pattern, LifeList *perturb, int transl, int steps);
 
 void setupPerturbors(LifeList *perturbs, Cell *placed, int nplaced,
                     LifeList *justPerturbs, LifeList *reaction);

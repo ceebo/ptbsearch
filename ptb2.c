@@ -27,7 +27,7 @@ int maxgen=50;
 int mingen=0;
 int maxvanish=0;
 
-  if (argc<3) return;
+  if (argc<3) return 0;
 
   readCellsColor(&orig, argv[1], 1);
   nptb=readPatList(ptb, argv[2]); 

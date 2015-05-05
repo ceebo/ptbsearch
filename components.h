@@ -1,3 +1,5 @@
+#include "gen.h"
+
 int initLabels(Cell *cells, int n);
 
 int relabel(Cell *cells, int n);

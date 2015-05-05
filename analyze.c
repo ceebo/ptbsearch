@@ -136,7 +136,7 @@ void makeWorkSpace(int n) {
 
 }
 
-initMatchList(PartialOscillatorDesc *osc, int nmatches) {
+void initMatchList(PartialOscillatorDesc *osc, int nmatches) {
 
 int i;
 

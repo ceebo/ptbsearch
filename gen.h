@@ -1,5 +1,7 @@
 /* All code copyright Paul Callahan 1996-1997 */
 
+#include <stddef.h>
+
 #define INCY (1<<15)
 #define INCX (1)
 #define CENTER (1<<14)
