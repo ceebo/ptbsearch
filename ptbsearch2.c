@@ -39,8 +39,8 @@ int x,y;
    printf("  (%3d,%3d) ", x,y);
 }
 
-void perturbEnum(LifeList *seed, LifeList *perturbs, int nperturbs,
-           int depth, int maxDepth, int mingen, int maxgen, int maxvanish) {
+void perturbEnum(LifeList *seed, LifeList *perturbs, int nperturbs, int depth,
+           int maxDepth, int mingen, int maxgencurr, int maxgenall, int maxvanish) {
 int i, naligns;
 int iperturb, thisgen;
 
@@ -52,7 +52,7 @@ int iperturb, thisgen;
 
      naligns=placeNewPerturbor(reaction+depth, perturbs, 
                                perturbPlace, depth, iperturb,
-                               mingen, maxgen, aligns);
+                               mingen, maxgencurr, aligns);
 
      setupPerturbors(perturbs, perturbPlace, depth, 
                      &justPerturbs, reaction+depth);
@@ -60,7 +60,7 @@ int iperturb, thisgen;
 
      for (thisgen=0; thisgen<mingen; thisgen++) generate(reaction+depth);
 
-     for (; thisgen<maxgen; thisgen++) {
+     for (; thisgen<maxgencurr; thisgen++) {
        for (i=0; i<naligns; i++) {
          int j;
          int tvanish = maxvanish;
@@ -124,7 +124,7 @@ int iperturb, thisgen;
 	       perturbGen[depth]= thisgen;
                aligns+=naligns;
 	       perturbEnum(seed, perturbs, nperturbs, depth+1, maxDepth,
-			   thisgen, maxgen, tvanish);  
+			   thisgen, maxgenall, maxgenall, tvanish);  
                aligns-=naligns;
 	     } 
 	   }

@@ -330,8 +330,8 @@ int survives(LifeList *pattern, LifeList *perturb, int transl, int steps);
 void setupPerturbors(LifeList *perturbs, Cell *placed, int nplaced,
                      LifeList *justPerturbs, LifeList *reaction);
 
-void perturbEnum(LifeList *seed, LifeList *perturbs, int nperturbs,
-           int depth, int maxDepth, int mingen, int maxgen, int maxvanish);
+void perturbEnum(LifeList *seed, LifeList *perturbs, int nperturbs, int depth,
+        int maxDepth, int mingen, int maxgencurr, int maxgenall, int maxvanish);
 
 void cumulativeImage(LifeList *cells, LifeList *cumulative, int ngens);
 
