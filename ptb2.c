@@ -26,7 +26,7 @@ int depth=1;
 int maxgenall=50; 
 int mingen=0;
 int maxvanish=0;
-int maxgen1=50;
+int maxgen1;
 
   if (argc<3) return;
 
@@ -36,7 +36,7 @@ int maxgen1=50;
   if (argc>4) sscanf(argv[4], "%d", &depth);
   if (argc>5) sscanf(argv[5], "%d", &mingen);
   if (argc>6) sscanf(argv[6], "%d", &maxvanish);
-  if (argc>7) sscanf(argv[7], "%d", &maxgen1);
+  if (argc>7) sscanf(argv[7], "%d", &maxgen1); else maxgen1 = maxgenall;
 
    perturbEnum(&orig, ptb, nptb,
                0, depth, mingen, maxgen1, maxgenall, maxvanish); 

@@ -18,6 +18,7 @@ ptb2 <test pattern> <list of perturbers> [maximum generation]
                                          [minimum generation]
                                          [#perturbers that can be destroyed
                                           completely without halting search]
+                                         [max gen of first interaction]
 
 For example:
 ptb2 picol.life ptb.list 80 2 20 1 > ptbpicol.out
@@ -38,6 +39,13 @@ perturbers, since their presence can greatly increase search time.
 Note that in picol.life, the glider cells are labeled 'a' and the
 block cells are labeled 'b' to distinguish between them.  The
 survive program uses this labeling.
+
+The extra parameter [max gen of first interaction] ensures that the
+first interaction between the pattern and the catalysts is before a
+particular generation. If this parameter is omitted then we assume
+that [max gen of first interaction] == [maximum generation]. This
+parameter should be especially useful if the initial pattern is a
+spaceship.
 
 survive:
 
