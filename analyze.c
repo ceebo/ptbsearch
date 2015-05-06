@@ -644,6 +644,12 @@ int placeNewPerturbor(LifeList *seed, LifeList *perturbs,
 
     naligns=combineLists(convolution, nelim, aligns, naligns, scratch1);
     copyList(scratch1, naligns, aligns, 0);
+    
+    if (i == 0) {
+        setValues(oldAlignments, nold, 0);
+        naligns=combineLists(oldAlignments, nold, aligns, naligns, scratch1);
+        copyList(scratch1, naligns, aligns, 0);
+    }
 
     generate(&cells);
 
