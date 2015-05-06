@@ -642,11 +642,13 @@ int placeNewPerturbor(LifeList *seed, LifeList *perturbs,
       }
     }
 
+    makeWorkSpace(nelim + naligns);
     naligns=combineLists(convolution, nelim, aligns, naligns, scratch1);
     copyList(scratch1, naligns, aligns, 0);
     
     if (i == 0) {
-        setValues(oldAlignments, nold, 0);
+        setValues(oldAlignments, nold, -1);
+        makeWorkSpace(nold + naligns);
         naligns=combineLists(oldAlignments, nold, aligns, naligns, scratch1);
         copyList(scratch1, naligns, aligns, 0);
     }
