@@ -18,7 +18,6 @@ main(int argc, char *argv[]) {
 	int fail;
 	int damaged;
 	int restored;
-	int withstand=10;
 	int prodcells;
 	char outpat[100000];
 
@@ -77,7 +76,7 @@ main(int argc, char *argv[]) {
 				copyLifeList(&cells, &outcells);
 
 				restored++;
-				if (restored>withstand) {
+				if (restored>10) {
 					if (fail>damaged) damaged=fail;
 					fail = 0;
 				}

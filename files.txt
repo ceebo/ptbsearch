@@ -1,0 +1,17 @@
+C:\Users\LDU\Life\ptbsearch-testing\source++\analyze.c
+C:\Users\LDU\Life\ptbsearch-testing\source++\analyze.h
+C:\Users\LDU\Life\ptbsearch-testing\source++\components.c
+C:\Users\LDU\Life\ptbsearch-testing\source++\components.h
+C:\Users\LDU\Life\ptbsearch-testing\source++\file.c
+C:\Users\LDU\Life\ptbsearch-testing\source++\file.h
+C:\Users\LDU\Life\ptbsearch-testing\source++\gen.c
+C:\Users\LDU\Life\ptbsearch-testing\source++\gen.h
+C:\Users\LDU\Life\ptbsearch-testing\source++\gen2x2.c
+C:\Users\LDU\Life\ptbsearch-testing\source++\gencode.h
+C:\Users\LDU\Life\ptbsearch-testing\source++\lifelist.c
+C:\Users\LDU\Life\ptbsearch-testing\source++\lifelist.h
+C:\Users\LDU\Life\ptbsearch-testing\source++\ptb2.c
+C:\Users\LDU\Life\ptbsearch-testing\source++\ptbsearch2.c
+C:\Users\LDU\Life\ptbsearch-testing\source++\rmo.c
+C:\Users\LDU\Life\ptbsearch-testing\source++\rmo.h
+C:\Users\LDU\Life\ptbsearch-testing\source++\survive.c
