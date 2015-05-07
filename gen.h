@@ -32,40 +32,40 @@
 /*
    Cell:
    Bit-packed position and value of grid cell
-   (usually, but not always, representing a Life cell) 
-*/
+   (usually, but not always, representing a Life cell)
+ */
 typedef struct {
-   int position;
-   unsigned int value;
+	int position;
+	unsigned int value;
 } Cell;
 
 
 
 /*
    LifeList:
-     Structure consisting of a row-major-ordered (rmo) list of cells 
+     Structure consisting of a row-major-ordered (rmo) list of cells
      and another of the cells neighborhoods used while computing a
-     Life generation. Note: maxsize is the maximum memory currently 
+     Life generation. Note: maxsize is the maximum memory currently
      allocated.
-      
-*/
+
+ */
 typedef struct {
-    Cell *cellList;
-    Cell *neighborhoods;
-    int ncells, maxsize;
-  } LifeList;
+	Cell *cellList;
+	Cell *neighborhoods;
+	int ncells, maxsize;
+} LifeList;
 
 
 /*
     Transformation:
-      Representation of a reorientation and translation 
+      Representation of a reorientation and translation
       of a Life pattern.
 
-*/
+ */
 typedef struct {
 
-   int flipxF, flipyF, transposeF;
-   int translateBy;
+	int flipxF, flipyF, transposeF;
+	int translateBy;
 
 } Transformation;
 
@@ -73,45 +73,45 @@ typedef struct {
    BoundingBox:
      Bounding box of a list of cells (usually a Life pattern).
 
-*/
+ */
 typedef struct {
 
-   int lx, ux;
-   int ly, uy;
+	int lx, ux;
+	int ly, uy;
 
 } BoundingBox;
 
 /*
-  OscillatorDesc:
+   OscillatorDesc:
    Result of oscillator test, including period, transformation,
    and maximum period tested.
-*/
+ */
 typedef struct {
 
-   int period;
-   int testedUpTo;
-   Transformation T;
+	int period;
+	int testedUpTo;
+	Transformation T;
 
 } OscillatorDesc;
 
-/* 
-  ClusterDesc:
+/*
+   ClusterDesc:
     Description of a cluster, including its oscillation, if any
     and its bounding box. */
 typedef struct {
-    OscillatorDesc osc;
-    BoundingBox bb;
+	OscillatorDesc osc;
+	BoundingBox bb;
 } ClusterDesc;
 
 /*
-   PartialOscillatorDesc: 
-     Result of "almost oscillator" test. 
-*/
+   PartialOscillatorDesc:
+     Result of "almost oscillator" test.
+ */
 typedef struct {
 
-   int period;
-   int matchDistance;
-   Transformation T;
+	int period;
+	int matchDistance;
+	Transformation T;
 
 } PartialOscillatorDesc;
 
@@ -119,15 +119,15 @@ typedef struct {
     History:
        Sequence of rmo lists representing the history of a Life
        pattern, returned by makeHistory.
-*/
+ */
 typedef struct {
 
-   Cell **cellList;
-   int *ncells;
-   int ngenerations;
+	Cell **cellList;
+	int *ncells;
+	int ngenerations;
 
-   Cell *trail;
-   int ntrail;
+	Cell *trail;
+	int ntrail;
 
 } History;
 
@@ -137,14 +137,14 @@ typedef struct {
        Sequence of Alignments, representing the relative position of
        two pairs at the generations at which they first touch,
        returned by FirstTouch.
-*/
+ */
 typedef struct {
 
-   Cell **alignments;
-   int *nalignments;
+	Cell **alignments;
+	int *nalignments;
 
-   int firstGen;
-   int ngens;
+	int firstGen;
+	int ngens;
 } AlignmentList;
 
 
@@ -178,7 +178,7 @@ int removeLessThan(Cell *list, int n, int value);
 int removeIfZero(Cell *list, int n, int value);
 
 int getQuadrantCells(Cell *fromList, int n, Cell *toList, int origin,
-                                           int dx, int dy);
+                     int dx, int dy);
 
 BoundingBox makeBoundingBox(Cell *list, int n);
 
@@ -196,7 +196,7 @@ int condCopyList(Cell *fromList, int n, Cell *toList, int value);
 
 int convolve(Cell *list1, int n1, Cell *list2, int n2,
              Cell **convolution, Cell **scratch1, Cell **scratch2,
-             void (*morespace) (int));
+             void (*morespace)(int));
 
 int convolveMin(Cell *list1, int n1, Cell *list2, int n2,
                 Cell *convolution, Cell *scratch1, Cell *scratch2);
@@ -246,7 +246,7 @@ void makeRowMajor(LifeList *cells);
 int findComponents(LifeList *cells, LifeList *labeled, int distance);
 
 int independentUpTo(LifeList *cells, LifeList *cumulative,
-                     LifeList *working, int ngens); 
+                    LifeList *working, int ngens);
 
 int getClusterDesc(LifeList *cells, LifeList *working1,
                    LifeList *working2, int ngens,
@@ -257,7 +257,7 @@ Transformation normalize(LifeList *cells);
 
 OscillatorDesc oscillation(LifeList *cells, LifeList *working, int testUpTo);
 
-OscillatorDesc simpleOscillation(LifeList *cells, LifeList *working, 
+OscillatorDesc simpleOscillation(LifeList *cells, LifeList *working,
                                  int testUpTo);
 
 int simpleSS(LifeList *cells, LifeList *working);
@@ -281,7 +281,7 @@ void longestOscillation(int *period, int *repetition);
 void readCellsColor(LifeList *cells, char *patname, int color);
 
 AlignmentList
-    firstTouch(LifeList *cells1, LifeList *cells2, int firstGen, int ngens);
+firstTouch(LifeList *cells1, LifeList *cells2, int firstGen, int ngens);
 
 void freeAlignmentList(AlignmentList list);
 
@@ -309,21 +309,21 @@ int matchLifeList(LifeList *cells, LifeList *matchcells, int transl);
 
 int interact(LifeList *pat1, LifeList *pat2, int transl);
 
-void initLifeList(LifeList *cells); 
+void initLifeList(LifeList *cells);
 
-void copyLifeList(LifeList *cells1, LifeList *cells2); 
+void copyLifeList(LifeList *cells1, LifeList *cells2);
 
-void getLifeListValues(LifeList *cells, LifeList *values); 
+void getLifeListValues(LifeList *cells, LifeList *values);
 
 void *myrealloc(void *pointer, size_t size);
 
 void logcomment(char *comment);
 
-void getpat(char *s, LifeList *cells); 
+void getpat(char *s, LifeList *cells);
 
 int placeNewPerturbor(LifeList *seed, LifeList *perturbs,
-                       Cell *placed, int nplaced, int newperturb,
-                       int initialGen, int finalGen, Cell *aligns);
+                      Cell *placed, int nplaced, int newperturb,
+                      int initialGen, int finalGen, Cell *aligns);
 
 int readPatList(LifeList *pat, char *patname);
 
@@ -333,7 +333,7 @@ void setupPerturbors(LifeList *perturbs, Cell *placed, int nplaced,
                      LifeList *justPerturbs, LifeList *reaction);
 
 void perturbEnum(LifeList *seed, LifeList *perturbs, int nperturbs,
-           int depth, int maxDepth, int mingen, int maxgen, int maxvanish);
+                 int depth, int maxDepth, int mingen, int maxgencurr, int maxgenall, int maxvanish);
 
 void cumulativeImage(LifeList *cells, LifeList *cumulative, int ngens);
 
@@ -342,13 +342,13 @@ int approaching(ClusterDesc cluster1, ClusterDesc cluster2);
 int possibleInteraction(ClusterDesc *clusters, int nClusters);
 
 int generateWhileActive(LifeList *cells, int stopPeriod, int matchesNeeded,
-                        int genLimit); 
+                        int genLimit);
 
-int packedGenerateWhileActive(LifeList *cells, int stopPeriod, 
-                              int matchesNeeded, int genLimit); 
+int packedGenerateWhileActive(LifeList *cells, int stopPeriod,
+                              int matchesNeeded, int genLimit);
 
 int quiescent(LifeList *cells, int stopPeriod, int matchesNeeded,
-              int retryAfter, int genLimit, int *ngens, 
+              int retryAfter, int genLimit, int *ngens,
               int oscPeriod, int clusterPeriod);
 
 void countMoving(int *gliders, int *spaceships);

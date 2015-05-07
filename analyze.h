@@ -8,19 +8,19 @@ void makeWorkSpace(int n);
 
 void initMatchList(PartialOscillatorDesc *osc, int nmatches);
 
-void bestMatches(LifeList *cells1, LifeList *cells2, int period, 
-                     int nmatches, PartialOscillatorDesc *osc);
+void bestMatches(LifeList *cells1, LifeList *cells2, int period,
+                 int nmatches, PartialOscillatorDesc *osc);
 
-void partialOscillation(LifeList *cells, LifeList *working, 
+void partialOscillation(LifeList *cells, LifeList *working,
                         int testUpTo, int testPhases,
                         int nmatches, PartialOscillatorDesc *posc);
 
-	
+
 /* not a public procedure */
 int findTouching(LifeList *cells1, LifeList *cells2);
 
 AlignmentList
-   firstTouch(LifeList *cells1, LifeList *cells2, int firstGen, int ngens);
+firstTouch(LifeList *cells1, LifeList *cells2, int firstGen, int ngens);
 
 void freeAlignmentList(AlignmentList list);
 
@@ -49,11 +49,11 @@ int mostSurvives(LifeList *pattern, LifeList *perturb, int transl, int steps);
 int survives(LifeList *pattern, LifeList *perturb, int transl, int steps);
 
 void setupPerturbors(LifeList *perturbs, Cell *placed, int nplaced,
-                    LifeList *justPerturbs, LifeList *reaction);
+                     LifeList *justPerturbs, LifeList *reaction);
 
 int placeNewPerturbor(LifeList *seed, LifeList *perturbs,
-                       Cell *placed, int nplaced, int newperturb,
-                       int initialGen, int finalGen, Cell *aligns);
+                      Cell *placed, int nplaced, int newperturb,
+                      int initialGen, int finalGen, Cell *aligns);
 
 
 

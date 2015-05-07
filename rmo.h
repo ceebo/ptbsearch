@@ -16,7 +16,7 @@ int sumAllNeighbors(Cell *list, int n, Cell *newlist);
 
 int findNeighborhoods(Cell *list, int n, Cell *newlist);
 
-int combineListsMin(Cell *list1, int n1, Cell *list2, int n2, Cell *list3) ;
+int combineListsMin(Cell *list1, int n1, Cell *list2, int n2, Cell *list3);
 
 void extractCenterCells(Cell *list, int n, Cell *extractFrom);
 
@@ -41,13 +41,13 @@ int removeIfZero(Cell *list, int n, int value);
 int condCopyList(Cell *fromList, int n, Cell *toList, int value);
 
 int getQuadrantCells(Cell *fromList, int n, Cell *toList, int origin,
-                                           int dx, int dy);
+                     int dx, int dy);
 
 int convolve(Cell *list1, int n1, Cell *list2, int n2,
              Cell **convolution, Cell **scratch1, Cell **scratch2,
-             void (*morespace) (int));
+             void (*morespace)(int));
 
-int convolveMin(Cell *list1, int n1, Cell *list2, int n2, 
+int convolveMin(Cell *list1, int n1, Cell *list2, int n2,
                 Cell *convolution, Cell *scratch1, Cell *scratch2);
 
 void quickSortCells(Cell list[], int left, int right);
@@ -80,7 +80,7 @@ int firstZero(Cell *list, int n);
 
 int compare(Cell *list1, Cell *list2, int n);
 
-BoundingBox makeBoundingBox(Cell *list, int n) ;
+BoundingBox makeBoundingBox(Cell *list, int n);
 
 void makeString(Cell *list, int n, char *patstring);
 
