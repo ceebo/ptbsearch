@@ -9,12 +9,76 @@ extern int spreadColor[];
 
 static char s[8192];
 
+void readCellsColorRLE(LifeList *cells, char *patname, int color) {
+
+    FILE *patfile;
+    int i, k, x = 0, y = 0, reps = 0, n = 0;
+ 
+    if (!(patfile=fopen(patname, "r"))) {
+        cells->ncells= 0;
+        return;
+    }
+    
+    n=cells->ncells;
+    
+    while (fgets(s, 8191, patfile)) {
+        int patlen = strspn(s, "0123456789bo.ABCDE$");
+        for (i=0; i < patlen; i++) {  
+            if ('0' <= s[i] && s[i] <= '9') {
+                reps = 10 * reps + (int)(s[i] - '0');
+            } else {
+                
+                if (reps == 0) reps = 1;
+                
+                if (s[i] == '$') {
+                    x = 0;
+                    y += reps;
+                } else {
+                    
+                    int value = 0;
+                    if (s[i] == 'o' || s[i] == 'A')
+                        value = color;
+                    else if (s[i] == 'C')
+                        value = (int) 'a';
+                    else if (s[i] == 'E')
+                        value = (int) 'b';
+                    
+                    if (value == 0) {
+                        x += reps;
+                    } else {
+                        while (reps-- > 0) {
+                            resizeIfNeeded(cells, n+1);
+                            cells->cellList[n].position = pack(x++, y);
+                            cells->cellList[n++].value = value;
+                        }
+                    }
+                }
+                
+                reps = 0;
+            }
+        }
+    }
+    
+    cells->ncells=n;
+    resizeIfNeeded(cells, n+1);
+    
+    fclose(patfile);
+    
+}
+
 void readCellsColor(LifeList *cells, char *patname, int color) {
 int n,pos,x,y,col;
 FILE *patfile;
 int curx, cury, lastx;
 int spacex, spacey; 
  
+   char *last_dot = strrchr(patname, '.');
+   if (last_dot && !strcmp(last_dot, ".rle")) {
+       readCellsColorRLE(cells, patname, color);
+       return;
+   }
+       
+
    curx=0;
    cury=0;
  
@@ -117,18 +181,50 @@ FILE *patfile;
   fclose(patfile);
 }
 
+int iswhitespace(char *s) {
+    while(*s)
+        if (!isspace(*s++))
+            return 0;
+    return 1;
+}
+
 int readPatList(LifeList *pat, char *patname) {
 int i=0;
 FILE *patfile;
+char header[256];
+int patcount=0;
+ 
+  header[0] = '\0';
 
   if ( (patfile=fopen(patname, "r")) != NULL) {
   
     while (fgets(s, 8191, patfile)) {
-         initLifeList(pat+i); 
-         getpat(s, pat+i);
-         i++;
+
+        if (iswhitespace(s))
+            continue;
+
+        if (s[0] == '#') {
+            if (s[1] == '#') {
+                if (patcount && header[0]) {
+                    fprintf(stderr, "%s x %d\n", header, patcount);
+                    patcount = 0;
+                }
+                strcpy(header, s);
+                header[strcspn(header, "\r\n")] = '\0';
+            }
+        } else {
+            initLifeList(pat+i); 
+            getpat(s, pat+i);
+            i++;
+            patcount++;
+        }
     }
     
+    if (patcount && header[0])
+        fprintf(stderr, "%s x %d\n", header, patcount);
+
+    fprintf(stderr, "Total catalysts %d\n", i);
+
     fclose(patfile);   
   }
 

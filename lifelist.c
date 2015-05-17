@@ -5,6 +5,7 @@
 #include "gen.h"
 #include <malloc.h>
 #include <assert.h>
+#include <string.h>
 
 
 void initLifeList(LifeList *cells) {
@@ -121,8 +122,56 @@ int interact(LifeList *pat1, LifeList *pat2, int transl) {
 }
 
 
+void getpatRLE(char *s, LifeList *cells) {
+
+    int i, x = 0, y = 0, reps = 0, n = 0;
+ 
+    int patlen = strspn(s, "0123456789bo.ABCDE$");
+
+    for (i=0; i < patlen; i++) {  
+        if ('0' <= s[i] && s[i] <= '9') {
+            reps = 10 * reps + (int)(s[i] - '0');
+        } else {
+            
+            if (reps == 0) reps = 1;
+            
+            if (s[i] == '$') {
+                x = 0;
+                y += reps;
+            } else {
+                
+                int value = 0;
+                if (s[i] == 'o' || s[i] == 'A')
+                    value = 1;
+                else if (s[i] == 'C' || s[i] == 'E')
+                    value = (int) 'z';
+                
+                if (value == 0) {
+                    x += reps;
+                } else {
+                    while (reps-- > 0) {
+                        resizeIfNeeded(cells, n+1);
+                        cells->cellList[n].position = pack(x++, y);
+                        cells->cellList[n++].value = value;
+                    }
+                }
+            }
+            
+            reps = 0;
+        }
+    }
+    
+    cells->ncells=n;
+    resizeIfNeeded(cells, n+1);    
+}
+
 void getpat(char *s, LifeList *cells) {
 int curx, cury;
+
+     if (strchr(s, '$')) {
+         getpatRLE(s, cells);
+         return;
+     }
 
      curx=cury=0;
 
