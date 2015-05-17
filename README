@@ -68,6 +68,21 @@ Pattern format:
    Also, live cells can be represented by letters a-z A-Z
    in order to distinguish between parts of the pattern that survive
 
+   If the filename of the test pattern ends in ".rle" then it is assumed
+   that the data is in RLE format. In plain RLE, live cells are translated
+   to '*'. In LifeHistory format state 1 translates to '*', state 3 to 'a'
+   and state 5 to 'b'. States 2 and 4 are ignored. No other states may be 
+   present.
+
+   RLE can also be used in the list of perturbers. RLE is assumed to be in
+   use if there is at least one instance of the character '$' on the line.
+   State 1 corresponds to '*' while states 3 and 5 correspond to 'z'. All
+   RLE for a single catalyst must appear on one line. Lines that begin with
+   two hash signs '##' are used as descriptors for the following catalysts.
+   Lines that begin with a single hash sign '#' are ignored, as are lines
+   that are purely whitespace. At the start of the program's execution a
+   summary of the catalysts that are being used is printed to stderr.
+
 Order of fields in output
 
 from ptb2:

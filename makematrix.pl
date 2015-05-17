@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
-$space=50;
-$cols=800;
+$space=80;
+$cols=650;
 if (scalar(@ARGV)>0) { $space=$ARGV[0]; }
 if (scalar(@ARGV)>1) { $cols=$ARGV[1]; }
 
