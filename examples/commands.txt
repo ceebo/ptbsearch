@@ -9,3 +9,6 @@
 # Intended to find 2o3b2o$2o3b2o8$8b2o$2bo5b2o$b3o$bo!
 # Requires maxdamage = 35 - 24 = 11
 ./ptb2 rpent.col r_to_h.list 36 2 18 1
+
+# Finds the semi-snark
+./ptb2 semi_snark.rle semi_snark.list 80 4 40 0 | ./survive a
