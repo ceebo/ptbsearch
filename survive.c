@@ -13,7 +13,7 @@ main(int argc, char *argv[]) {
   int x,y;
   int match;
   int pos;
-  int count[240];
+  int count[64];
   int least= 0;
   int fail;
   int damaged;
@@ -34,8 +34,6 @@ main(int argc, char *argv[]) {
 
   while(gets(nextpat)) {
 
-    for (i=0; i<240; i++) { count[i] = i; }
-
     getpat(nextpat, &cells);
     copyLifeList(&cells, &matchcells);
 
@@ -54,19 +52,23 @@ main(int argc, char *argv[]) {
 
       //      printf("%d %d %d %d\n", i, fail, damaged, restored);
 
-      count[i%240] = cells.ncells;
+      count[i&63] = cells.ncells;
    
       if (cells.ncells == 0) break;
+      
+      if (i >= 64) {
+
+          match = 1;
+
+          for (j = 2; j < 64; j+=2) {
+              if (count[(i-j)&63] != cells.ncells) {
+                  match = 0;
+                  break;
+              }
+          } 
    
-      match = 1;
-      for (j=0; j<180; j++) {
-	if (count[j] != count[j+60]) {
-	  match = 0;
-	  break;
-	} 
+          if (match) break;
       }
-   
-      if (match) break;
    
       if ( matchLifeList(&cells, &matchcells, 0) < matchcells.ncells) {
 	fail++; 
@@ -83,15 +85,15 @@ main(int argc, char *argv[]) {
       }
    
       if (fail>150) break;
-
+      
     }
    
-    if (damaged) {
+    if (i > 400) {
       fflush(stdout);
       removeLifeList(&outcells, &matchcells, 0);
       makeString(outcells.cellList, outcells.ncells, outpat);
 
-      printf("%s %d %d %d %d %s\n", nextpat, damaged, fail, i-fail, prodcells, outpat);
+      printf("%s %d %d %d %d %s %d\n", nextpat, damaged, fail, i-fail, prodcells, outpat);
     }
    
   }

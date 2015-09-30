@@ -1,5 +1,9 @@
 /* All code copyright Paul Callahan 1996-1997 */
 
+#define FLIP_X 1
+#define FLIP_Y 1
+#define SYMM (1 + (FLIP_X || FLIP_Y))
+
 #define INCY (1<<15)
 #define INCX (1)
 #define CENTER (1<<14)

@@ -48,6 +48,46 @@ void mergeLifeLists(LifeList *cells1, LifeList *cells2, int transl) {
     copyList(cells1->neighborhoods, cells1->ncells, cells1->cellList, 0);
 }
 
+/*
+extern int max_x, max_y;
+
+void setSymmetryDimensions(int LifeList *cells) {
+    
+    int i, x, y,n = cells->ncells;
+    max_x = max_y = 0;
+
+    for (i = 0; i < n; i++) {
+
+        unpack(cells->cellList[i].position, &x, &y);
+        if (x > max_x) max_x = x;
+        if (y > max_y) max_y = y;
+    }
+
+}
+*/
+
+void resymmetrise(LifeList *cells) {
+
+    if (!FLIP_X && !FLIP_Y)
+        return;
+
+    int i, n = cells->ncells;
+
+    resizeIfNeeded(cells, 2 * n);
+
+    for (i = 0; i < n; i++) {
+        int pos = cells->cellList[i].position;
+        if (FLIP_X) pos = flip_x(pos);
+        if (FLIP_Y) pos = flip_y(pos);
+        cells->cellList[i+n].position = pos;
+        cells->cellList[i+n].value = cells->cellList[i].value;
+    }
+
+    cells->ncells = 2 * n;
+
+    makeRowMajor(cells);
+}
+
 void mergeLifeListsMin(LifeList *cells1, LifeList *cells2, int transl) {
 
 /* note: destroys neighborhood values */

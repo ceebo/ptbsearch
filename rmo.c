@@ -688,6 +688,18 @@ int pack(int x, int y) {
 
 }
 
+int max_x, max_y;
+
+int flip_x(int pack_value) {
+    int x = (pack_value & (INCY-1)) - CENTER;
+    return pack_value + max_x - 2 * x;
+}
+
+int flip_y(int pack_value) {
+    int y = pack_value / INCY - CENTER;
+    return pack_value + (max_y - 2 * y) * INCY;
+}
+
 int packtrans(int x, int y) {
   
    return pack(x,y)-CENTER*INCY-CENTER;

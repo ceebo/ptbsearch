@@ -17,6 +17,7 @@ LifeList tmp;
 extern Cell *convolution, *scratch1, *scratch2, *oldAlignments;
 void makeWorkSpace(int n);
 
+extern int max_x, max_y;
 
 main(int argc, char *argv[]) {
 int i, nconv, nol;
@@ -35,8 +36,10 @@ int maxgen1;
   if (argc>3) sscanf(argv[3], "%d", &maxgenall);
   if (argc>4) sscanf(argv[4], "%d", &depth);
   if (argc>5) sscanf(argv[5], "%d", &mingen);
-  if (argc>6) sscanf(argv[6], "%d", &maxvanish);
-  if (argc>7) sscanf(argv[7], "%d", &maxgen1); else maxgen1 = maxgenall;
+  if (argc>6) sscanf(argv[6], "%d", &max_x);
+  if (argc>7) sscanf(argv[7], "%d", &max_y);
+  maxgen1 = maxgenall;
+  resymmetrise(&orig);
 
    perturbEnum(&orig, ptb, nptb,
                0, depth, mingen, maxgen1, maxgenall, maxvanish); 

@@ -561,7 +561,7 @@ int i,damaged, lastsfor;
         if ( matchLifeList(&tmp, perturb, transl) == perturb->ncells && 
              matchLifeList(&tmp, &spread1, transl) == perturb->ncells ) {
            if (damaged) lastsfor++;
-           if (lastsfor>=10) return 1;
+           if (lastsfor>=8) return 1;
         } else {
            damaged = 1;
            lastsfor = 0;
@@ -586,6 +586,7 @@ void setupPerturbors(LifeList *perturbs, Cell *placed, int nplaced,
       mergeLifeLists(justPerturbs, perturbs+placed[i].value,
 		     placed[i].position);
     }
+    resymmetrise(justPerturbs);
     mergeLifeLists(reaction, justPerturbs, 0);
 
   }
@@ -611,7 +612,6 @@ int placeNewPerturbor(LifeList *seed, LifeList *perturbs,
   copyLifeList(seed, &cells);
 
   setupPerturbors(perturbs, placed, nplaced, &perturbcells, &cells);
-
   naligns=0;
   for (i=0; i<finalGen; i++) {
 

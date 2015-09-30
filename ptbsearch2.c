@@ -57,7 +57,6 @@ int iperturb, thisgen;
      setupPerturbors(perturbs, perturbPlace, depth, 
                      &justPerturbs, reaction+depth);
 
-
      for (thisgen=0; thisgen<mingen; thisgen++) generate(reaction+depth);
 
      for (; thisgen<maxgencurr; thisgen++) {
@@ -82,12 +81,15 @@ int iperturb, thisgen;
                mergeLifeLists(&justPerturbs, perturbs+perturbPlace[j].value, 
                                              perturbPlace[j].position);
            }
+           resymmetrise(&justPerturbs);
 
 	   mergeLifeLists(&tmp, perturbs+iperturb, aligns[i].position);
+           resymmetrise(&tmp);
 
            oldcount=justPerturbs.ncells;
 	   mergeLifeLists(&justPerturbs, perturbs+iperturb, 
 			                      aligns[i].position);
+           resymmetrise(&justPerturbs);
 
 	   // if (iperturb==8) printf("chose a block %d %d\n", perturbs[iperturb].ncells, countGreaterThan(perturbs[iperturb].cellList, perturbs[iperturb].ncells, 1)  );
 
@@ -96,8 +98,8 @@ int iperturb, thisgen;
                                 perturbs[iperturb].ncells) tvanish--;
 
            if (tvanish>=0 &&
-             oldcount+perturbs[iperturb].ncells == justPerturbs.ncells &&
-               survives(&tmp, &justPerturbs, 0, 15)) {
+               oldcount+SYMM*perturbs[iperturb].ncells == justPerturbs.ncells &&
+               survives(&tmp, &justPerturbs, 0, 10)) {
 
 	     if (depth >= maxDepth) {
                if (restored(&tmp, &justPerturbs, 0, 50)) {
