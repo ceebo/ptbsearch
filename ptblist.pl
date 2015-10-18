@@ -1,25 +1,41 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
-open LIST1, $ARGV[0];
-while (<LIST1>) 
+# Get number of lines
+open TEMP, $ARGV[0];
+1 while(<TEMP>);
+my $all = $.;
+close TEMP;
+
+# Main loop of ptb2
+open PATLIST, $ARGV[0];
+while (<PATLIST>)
 {
     @flds = split(" ");
-    $pat1 = $flds[0];
-    if (scalar(@flds)<2)
-    {
-	$gen0 = 18;
-    }
-    else
-    {
+
+    if(scalar(@flds) < 2){
+        $gen0 = 18;
+    }else{
         $gen0 = $flds[1];
     }
+   
+    if(scalar(@flds)< 4){
+        $gen1 = $ARGV[2];
+    }elsif($ARGV[2] < $flds[4]){
+        $gen1 = $ARGV[2];
+    }else{
+        $gen1 = $flds[4];
+    }
+   
+    $pat = $flds[0];
+    $pat =~ s/!/.\n/g;
 
-    $pat1 =~ s/!/.\n/g;
-    open OUTPAT, "> pat1";
-    print OUTPAT $pat1;
+    open OUTPAT, "> temp";
+    print OUTPAT $pat;
     close OUTPAT;
 
-    system("../ptb2 pat1 $ARGV[1] $ARGV[2] 0 $gen0 1");
+    print STDERR "==========$./$all==========\n";
+    system("./ptb2 temp $ARGV[1] $gen1 0 $gen0 1");
 
 }
-close LIST1;
+close PATLIST;
+unlink "temp"
