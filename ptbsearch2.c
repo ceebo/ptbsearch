@@ -47,6 +47,8 @@ int iperturb, thisgen;
 
    for (iperturb=0; iperturb<nperturbs; iperturb++) {
 
+     if(depth == 0) fprintf(stderr, "Working with perturber #%d\n", iperturb+1);
+     
      copyLifeList(seed, reaction+depth);
      setValues(reaction[depth].cellList, reaction[depth].ncells, 1); 
 
