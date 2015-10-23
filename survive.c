@@ -18,14 +18,15 @@ main(int argc, char *argv[]) {
   int fail;
   int damaged;
   int restored;
-  int prodcells; 
+  int restorefilter = 10;
+  int prodcells;
   char outpat[100000];
 
 
   History hist;
   int period, repetitions;
   Cell lifetrail[5000];
-  static char nextpat[2000];
+  static char nextpat[10000];
   int ncls;
 
   initLifeList(&cells);
@@ -40,52 +41,55 @@ main(int argc, char *argv[]) {
     copyLifeList(&cells, &matchcells);
 
     if (argc>1) {
-      for (i=0; argv[1][i]; i++) { 
-	matchcells.ncells = 
-	  removeIfEquals(matchcells.cellList, matchcells.ncells, argv[1][i]); 
+      for (i=0; argv[1][i]; i++) {
+        matchcells.ncells =
+          removeIfEquals(matchcells.cellList, matchcells.ncells, argv[1][i]);
       }
+    }
+    if (argc>2){
+      sscanf(argv[2], "%d", &restorefilter);
     }
 
     fail=0;
     damaged=0;
     restored=0;
     for (i=0; i<gens; i++) {
-      generate(&cells); 
+      generate(&cells);
 
       //      printf("%d %d %d %d\n", i, fail, damaged, restored);
 
       count[i%240] = cells.ncells;
-   
+
       if (cells.ncells == 0) break;
-   
+
       match = 1;
       for (j=0; j<180; j++) {
-	if (count[j] != count[j+60]) {
-	  match = 0;
-	  break;
-	} 
+        if (count[j] != count[j+60]) {
+          match = 0;
+          break;
+        }
       }
-   
+
       if (match) break;
-   
+
       if ( matchLifeList(&cells, &matchcells, 0) < matchcells.ncells) {
-	fail++; 
-	restored=0;
+        fail++;
+        restored=0;
       } else {
-	prodcells = cells.ncells - matchcells.ncells;
+        prodcells = cells.ncells - matchcells.ncells;
         copyLifeList(&cells, &outcells);
 
-	restored++;
-	if (restored>10) {
-	  if (fail>damaged) damaged=fail;
-	  fail = 0;
-	}
+        restored++;
+        if (restored>restorefilter) {
+          if (fail>damaged) damaged=fail;
+          fail = 0;
+        }
       }
-   
+
       if (fail>150) break;
 
     }
-   
+
     if (damaged) {
       fflush(stdout);
       removeLifeList(&outcells, &matchcells, 0);
@@ -93,7 +97,7 @@ main(int argc, char *argv[]) {
 
       printf("%s %d %d %d %d %s\n", nextpat, damaged, fail, i-fail, prodcells, outpat);
     }
-   
+
   }
 }
 
