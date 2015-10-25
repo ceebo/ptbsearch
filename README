@@ -151,3 +151,7 @@ a list of patterns and outputs to ph1.out, ph2.out, ..., ph7.out
 
 You can try 'runall.sh picol.life' for example.  This requires a lot
 of disk space.
+
+Some new catalyst files spartan.list, spartanlite.list and exotic.list were
+added by Scorbie. Also see the following link for a detailed walkthrough:
+http://conwaylife.com/forums/viewtopic.php?f=2&t=1808&start=25#p23900
