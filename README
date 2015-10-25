@@ -138,7 +138,9 @@ scripts:
 
 ptblist.pl is a perl script that runs ptb2 on a list of patterns to
 be perturbed.  It uses the second column on each line as the first
-step when the perturber can be added.
+step when the perturber can be added. User 'Scorbie' on conwaylife forums
+is the best person to ask about ptblist.pl. See for example this post
+http://conwaylife.com/forums/viewtopic.php?f=9&t=1536&start=75#p24025.
 
 uniq.pl is a perl script that only prints one example of each final pattern
 based on the last column of output from survive (but this could eliminate
