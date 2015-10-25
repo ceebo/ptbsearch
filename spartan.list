@@ -1,0 +1,63 @@
+# Spartan catalyst file by Scorbie containing all spartan
+# catalysts and 5 of most common spartan transparent 
+# catalysts: block, beehive, boat, loaf and pond.
+
+##Block
+2C$AC!
+AC$2C!
+CA$2C!
+2C$CA!
+
+##Tub
+.A$A.C$.C!
+.C$C.A$.A!
+
+##Boat
+.C$C.C$.CA!
+.C$C.C$AC!
+AC$C.C$.C!
+.CA$C.C$.C!
+
+##Ship
+2C$C.C$.CA!
+.2C$C.C$AC!
+AC$C.C$.2C!
+.CA$C.C$2C!
+
+##Transp. Block
+2C$2C!
+
+##Transp. Beehive
+.2C$C2.C$.2C!
+.C$C.C$C.C$.C!
+
+##Transp. Loaf
+.2C$C2.C$C.C$.C!
+.2C$C2.C$.C.C$2.C!
+2.C$.C.C$C2.C$.2C!
+.C$C.C$C2.C$.2C!
+
+##Transp. Boat
+.C$C.C$.2C!
+.C$C.C$2C!
+2C$C.C$.C!
+.2C$C.C$.C!
+
+##Transp. Pond
+.2C$C2.C$C2.C$.2C!
+
+##Eater 1
+CA$A$.3A$3.A!
+2.AC$.A.A$.A$2A!
+A$3A$3.A$2.AC!
+2.2A$2.A$A.A$CA!
+CA$A.A$2.A$2.2A!
+2.AC$3.A$3A$A!
+2A$.A$.A.A$2.AC!
+3.A$.3A$A$CA!
+
+##Ship + Eater
+10.2A$10.C.C$11.2C$7.AC$6.A.A$6.A$4.A.A$4.CA$2C$C.C$.2A!
+.2A$C.C$2C$4.CA$4.A.A$6.A$6.A.A$7.AC$11.2C$10.C.C$10.2A!
+.2C$A.C$AC$$3.CA$3.A$4.3A$7.A$6.AC$$9.CA$8.C.A$8.2C!
+8.2C$8.C.A$9.CA$$6.AC$7.A$4.3A$3.A$3.CA$$AC$A.C$.2C!
