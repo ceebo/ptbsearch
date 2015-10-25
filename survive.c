@@ -19,18 +19,23 @@ main(int argc, char *argv[]) {
   int damaged;
   int restored;
   int prodcells; 
+  int restorefilter=10;
   char outpat[100000];
 
 
   History hist;
   int period, repetitions;
   Cell lifetrail[5000];
-  static char nextpat[2000];
+  static char nextpat[10000];
   int ncls;
 
   initLifeList(&cells);
   initLifeList(&matchcells);
   initLifeList(&outcells);
+
+  if (argc>2) {
+      sscanf(argv[2], "%d", &restorefilter);
+  }
 
   while(gets(nextpat)) {
 
@@ -76,7 +81,7 @@ main(int argc, char *argv[]) {
         copyLifeList(&cells, &outcells);
 
 	restored++;
-	if (restored>10) {
+	if (restored>restorefilter) {
 	  if (fail>damaged) damaged=fail;
 	  fail = 0;
 	}
