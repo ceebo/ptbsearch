@@ -7,6 +7,7 @@ main(int argc, char *argv[]) {
 
   static LifeList cells;
   static LifeList matchcells;
+  static LifeList boundarycells;
   static LifeList outcells;
   int i,j,n=0;
   int gens=500;
@@ -31,6 +32,7 @@ main(int argc, char *argv[]) {
 
   initLifeList(&cells);
   initLifeList(&matchcells);
+  initLifeList(&boundarycells);
   initLifeList(&outcells);
 
   if (argc>2) {
@@ -50,6 +52,9 @@ main(int argc, char *argv[]) {
 	  removeIfEquals(matchcells.cellList, matchcells.ncells, argv[1][i]); 
       }
     }
+
+    copyLifeList(&matchcells, &boundarycells);
+    spread(&boundarycells, 1);
 
     fail=0;
     damaged=0;
@@ -73,7 +78,8 @@ main(int argc, char *argv[]) {
    
       if (match) break;
    
-      if ( matchLifeList(&cells, &matchcells, 0) < matchcells.ncells) {
+      if ( matchLifeList(&cells, &matchcells, 0) < matchcells.ncells
+           || matchLifeList(&cells, &boundarycells, 0) != matchcells.ncells) {
 	fail++; 
 	restored=0;
       } else {
