@@ -19,6 +19,8 @@ main(int argc, char *argv[]) {
   int fail;
   int damaged;
   int restored;
+  int firstgen;
+  int maxgen;
   int prodcells; 
   int restorefilter=10;
   char outpat[100000];
@@ -59,6 +61,8 @@ main(int argc, char *argv[]) {
     fail=0;
     damaged=0;
     restored=0;
+    firstgen=0;
+    maxgen=0;
     for (i=0; i<gens; i++) {
       generate(&cells); 
 
@@ -82,14 +86,18 @@ main(int argc, char *argv[]) {
            || matchLifeList(&cells, &boundarycells, 0) != matchcells.ncells) {
 	fail++; 
 	restored=0;
+        if (firstgen == 0) { firstgen = i; maxgen = i + 10; }
       } else {
-	prodcells = cells.ncells - matchcells.ncells;
-        copyLifeList(&cells, &outcells);
-
+        if (restored == 0 || i <= maxgen) {
+            prodcells = cells.ncells - matchcells.ncells;
+            copyLifeList(&cells, &outcells);
+        }
+        
 	restored++;
 	if (restored>restorefilter) {
 	  if (fail>damaged) damaged=fail;
 	  fail = 0;
+          firstgen = 0;
 	}
       }
    
