@@ -86,15 +86,15 @@ main(int argc, char *argv[]) {
            || matchLifeList(&cells, &boundarycells, 0) != matchcells.ncells) {
 	fail++; 
 	restored=0;
-        if (firstgen == 0) { firstgen = i; maxgen = i + 10; }
+        if (firstgen == 0) { firstgen = i; maxgen = i + restorefilter + 10; }
       } else {
-        if (restored == 0 || i <= maxgen) {
-            prodcells = cells.ncells - matchcells.ncells;
-            copyLifeList(&cells, &outcells);
-        }
-        
 	restored++;
 	if (restored>restorefilter) {
+          if (restored == restorefilter + 1 || i <= maxgen) {
+              prodcells = cells.ncells - matchcells.ncells;
+              copyLifeList(&cells, &outcells);
+          }
+          
 	  if (fail>damaged) damaged=fail;
 	  fail = 0;
           firstgen = 0;
