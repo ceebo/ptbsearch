@@ -21,6 +21,7 @@ main(int argc, char *argv[]) {
   int restored;
   int firstgen;
   int maxgen;
+  int survivegen;
   int prodcells; 
   int restorefilter=10;
   char outpat[100000];
@@ -63,8 +64,8 @@ main(int argc, char *argv[]) {
     restored=0;
     firstgen=0;
     maxgen=0;
+    survivegen=0;
     for (i=0; i<gens; i++) {
-      generate(&cells); 
 
       //      printf("%d %d %d %d\n", i, fail, damaged, restored);
 
@@ -89,6 +90,7 @@ main(int argc, char *argv[]) {
         if (firstgen == 0) { firstgen = i; maxgen = i + restorefilter + 10; }
       } else {
 	restored++;
+        survivegen = i;
 	if (restored>restorefilter) {
           if (restored == restorefilter + 1 || i <= maxgen) {
               prodcells = cells.ncells - matchcells.ncells;
@@ -103,6 +105,7 @@ main(int argc, char *argv[]) {
    
       if (fail>150) break;
 
+      generate(&cells); 
     }
    
     if (damaged) {
@@ -110,7 +113,7 @@ main(int argc, char *argv[]) {
       removeLifeList(&outcells, &matchcells, 0);
       makeString(outcells.cellList, outcells.ncells, outpat);
 
-      printf("%s %d %d %d %d %s\n", nextpat, damaged, fail, i-fail, prodcells, outpat);
+      printf("%s %d %d %d %d %s\n", nextpat, damaged, fail, survivegen, prodcells, outpat);
     }
    
   }
